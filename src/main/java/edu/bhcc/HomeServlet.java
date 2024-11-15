@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,7 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Hello, World Servlet.
  */
-public class HelloServlet extends HttpServlet {
+@WebServlet(name="homeServlet", urlPatterns = "/")
+public class HomeServlet extends HttpServlet {
 
     /**
      * Process an HTTP Request.
@@ -27,7 +29,24 @@ public class HelloServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         
 
-        try (Scanner sc = new Scanner(new File("src/main/java/edu/bhcc/index.html"))){
+        try (Scanner sc = new Scanner(new File("src/main/webapp/WEB-INF/index.html"))){
+            while (sc.hasNextLine()) {
+                writer.println(sc.nextLine());
+            }
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws IOException {
+
+        response.setContentType("text/html");
+        response.setStatus(HttpServletResponse.SC_OK);
+
+        //  Output a Hello Message
+        PrintWriter writer = response.getWriter();
+
+
+        try (Scanner sc = new Scanner(new File("src/main/webapp/WEB-INF/index.html"))){
             while (sc.hasNextLine()) {
                 writer.println(sc.nextLine());
             }

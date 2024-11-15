@@ -13,25 +13,47 @@ import java.util.ArrayList;
 
 @WebServlet("newRun")
 public class NewRunServlet extends HttpServlet {
+
+
+
   private record Run(String date, double distance, double time, double speed, String gps){}
+  private ArrayList<Run> runs;
+  private Connection database;
+
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-    response.setContentType("text/html");
-    response.setStatus(HttpServletResponse.SC_OK);
-    ArrayList<Run> runs;
 
     try {
-      Connection database = DriverManager.getConnection("jdbc:sqlite:src/main/webapp/WEB-INF/running.db");
-
+      database = DriverManager.getConnection("jdbc:sqlite:src/main/webapp/WEB-INF/running.db");
       insertRun(database, request);
-
       runs = getAllRuns(database);
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
 
+    sendHtml(response, runs);
+  }
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+
+    try {
+      database = DriverManager.getConnection("jdbc:sqlite:src/main/webapp/WEB-INF/running.db");
+      runs = getAllRuns(database);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    sendHtml(response, runs);
+  }
+
+
+  private void sendHtml(HttpServletResponse response, ArrayList<Run> runs) throws IOException {
+    response.setContentType("text/html");
+    response.setStatus(HttpServletResponse.SC_OK);
+
     PrintWriter out = response.getWriter();
-    out.println("<html>");
+    out.println("<!DOCTYPE html>");
+    out.println("<html lang='en'>");
     out.println("<body>");
     for (Run run : runs) {
       out.println("<h1>" + run.date + "</h1>");
@@ -40,10 +62,10 @@ public class NewRunServlet extends HttpServlet {
       out.println("<p>" + run.speed + "</p>");
       out.println("<p>" + run.gps + "</p>");
     }
-    out.println("<input type='submit' formaction='localhost:8080' value='try again'>");
+    out.println("<form action='/' method='post'>");
+    out.println("<input type='submit' value='try again'>");
+    out.println("</form>");
     out.println("</body>");
-
-
   }
 
 
