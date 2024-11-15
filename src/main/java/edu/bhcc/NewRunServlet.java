@@ -1,6 +1,5 @@
 package edu.bhcc;
 
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,9 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-@WebServlet("newRun")
 public class NewRunServlet extends HttpServlet {
-
 
 
   private record Run(String date, double distance, double time, double speed, String gps){}
@@ -55,6 +52,7 @@ public class NewRunServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html lang='en'>");
     out.println("<body>");
+    out.println("<div style=height:450px;width:350px;overflow:auto>");
     for (Run run : runs) {
       out.println("<h1>" + run.date + "</h1>");
       out.println("<p>" + run.distance + "</p>");
@@ -62,8 +60,9 @@ public class NewRunServlet extends HttpServlet {
       out.println("<p>" + run.speed + "</p>");
       out.println("<p>" + run.gps + "</p>");
     }
+    out.println("</div>");
     out.println("<form action='/' method='post'>");
-    out.println("<input type='submit' value='try again'>");
+    out.println("<input type='submit' value='New Run'>");
     out.println("</form>");
     out.println("</body>");
   }
@@ -72,9 +71,9 @@ public class NewRunServlet extends HttpServlet {
   private void insertRun(Connection connection, HttpServletRequest request) throws SQLException{
     String date = request.getParameter("date");
     double distance = Double.parseDouble(request.getParameter("distance"));
-    int timeHr = Integer.parseInt(request.getParameter("timeHr"));
-    int timeMin = Integer.parseInt(request.getParameter("timeMin"));
-    int timeSec = Integer.parseInt(request.getParameter("timeSec"));
+    int timeHr = validateInt(request.getParameter("timeHr"));
+    int timeMin = validateInt(request.getParameter("timeMin"));
+    int timeSec = validateInt(request.getParameter("timeSec"));
     double time = timeHr * 3600 + timeMin * 60 + timeSec; // time stored in seconds
     String gps = request.getParameter("gps");
 
@@ -86,9 +85,6 @@ public class NewRunServlet extends HttpServlet {
     insert.setString(4, gps);
 
     insert.executeUpdate();
-
-
-
   }
 
   private ArrayList<Run> getAllRuns(Connection connection) throws SQLException {
@@ -107,5 +103,14 @@ public class NewRunServlet extends HttpServlet {
       } while(query.next());
     }
     return runs;
+  }
+
+  private int validateInt(String input) {
+    try {
+      return Integer.parseInt(input);
+    } catch (NumberFormatException e) {
+      System.out.println("Exception Thrown");
+      return 0;
+    }
   }
 }

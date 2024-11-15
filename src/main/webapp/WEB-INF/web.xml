@@ -8,14 +8,21 @@
 
 
   <servlet>
-    <servlet-name>post_comment</servlet-name>
-    <servlet-class>edu.bhcc.Post_Comment</servlet-class>
+    <servlet-name>home</servlet-name>
+    <servlet-class>edu.bhcc.HomeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>newRun</servlet-name>
+    <servlet-class>edu.bhcc.NewRunServlet</servlet-class>
   </servlet>
 
-
   <servlet-mapping>
-    <servlet-name>post_comment</servlet-name>
-    <url-pattern>hello/post_comment/*</url-pattern>
+    <servlet-name>home</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>newRun</servlet-name>
+    <url-pattern>/newRun</url-pattern>
   </servlet-mapping>
 
 
