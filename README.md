@@ -1,8 +1,13 @@
-# Jetty Web Application Template
+# SQL Table Creation Statement
 
-This directory contains a template for creating and running servlets
-via the embedded Jetty engine.
-
-To run the server:
-
-mvn jetty:run
+```sqlite
+CREATE TABLE "RUNS" (
+    "RunID"	INTEGER,
+    "Date"	TEXT NOT NULL,
+    "Distance"	NUMERIC NOT NULL,
+    "Time"	NUMERIC NOT NULL,
+    "Speed"	GENERATED ALWAYS AS (("Time" / 60) / "Distance") VIRTUAL,
+    "GPS"	TEXT,
+    PRIMARY KEY("RunID" AUTOINCREMENT)
+);
+```

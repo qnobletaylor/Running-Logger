@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h2>- Add a run -</h2>
+
+<form action="newRun" method="post">
+    <label for="date">Date :</label>
+    <input type="date" id="date" name="date" required><br><br>
+    <label for="distance">Distance :</label>
+    <input type="text" id="distance" name="distance" placeholder="in miles" pattern="\d+(\.\d+)?" required><br><br>
+    <label>Time :
+    <input type="text" id="timeHr" name="timeHr" placeholder="00" pattern="\d{1,2}"> :
+    <input type="text" id="timeMin" name="timeMin" placeholder="00" pattern="\d{1,2}" required> :
+    <input type="text" id="timeSec" name="timeSec" placeholder="00" pattern="\d{1,2}" required>
+    </label><br><br>
+    <label for="gps">GPS</label>
+    <input type="text" id="gps" name="gps" placeholder="URL to map"><br><br>
+    <input type="submit"><input type="reset">
+    <input type="submit" formaction="localhost:8080" value="try again">
+</form>
+</body>
+</html>
