@@ -7,7 +7,7 @@ CREATE TABLE "RUNS" (
     "Distance"	NUMERIC NOT NULL,
     "Time"	NUMERIC NOT NULL,
     "Speed"	GENERATED ALWAYS AS (("Time" / 60) / "Distance") VIRTUAL,
-    "GPS"	TEXT,
+    "StravaID"	TEXT,
     PRIMARY KEY("RunID" AUTOINCREMENT)
 );
 ```

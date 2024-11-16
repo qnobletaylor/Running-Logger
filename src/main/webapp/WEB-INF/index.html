@@ -4,20 +4,20 @@
         <h2>- Add a run -</h2>
 
         <form action="newRun" method="post">
-            <label style="margin-right: 30px;" for="date">Date :</label>
+            <label style="margin-right: 31px;" for="date">Date :</label>
             <input type="date" id="date" name="date" required><br><br>
 
-            <label style="margin-right: 6px" for="distance">Distance :</label>
+            <label style="margin-right: 7px" for="distance">Distance :</label>
             <input type="text" id="distance" name="distance" placeholder="miles" pattern="\d+(\.\d+)?" required><br><br>
 
-            <label style="margin-right: 30px">Time :
-            <input style="width: 22px;margin-left: 28px" type="text" id="timeHr" name="timeHr" placeholder="hr" pattern="\d{1,2}"> :
+            <label style="margin-right: 31px">Time :
+            <input style="width: 22px;margin-left: 29px" type="text" id="timeHr" name="timeHr" placeholder="hr" pattern="\d{1,2}"> :
             <input style="width: 22px" type="text" id="timeMin" name="timeMin" placeholder="min" pattern="\d{1,2}" required> :
             <input style="width: 22px" type="text" id="timeSec" name="timeSec" placeholder="sec" pattern="\d{1,2}" required>
             </label><br><br>
 
-            <label style="margin-right: 30px" for="data">Data : </label>
-            <input type="text" id="data" name="data" placeholder="URL"><br><br>
+            <label for="stravaID">Strava ID :</label>
+            <input type="text" id="stravaID" name="stravaID" placeholder="ID"><br><br>
 
             <input type="submit" value="Submit"><input style="margin-left: 4px" type="Reset">
             <form action="newRun" method="get">
