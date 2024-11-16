@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class NewRunServlet extends HttpServlet {
 
 
-  private record Run(String date, double distance, double time, double speed, String gps){}
+  private record Run(String date, double distance, double time, double speed, String data){}
   private ArrayList<Run> runs;
   private Connection database;
 
@@ -58,7 +58,7 @@ public class NewRunServlet extends HttpServlet {
       out.println("<p>" + run.distance + "</p>");
       out.println("<p>" + run.time + "</p>");
       out.println("<p>" + run.speed + "</p>");
-      out.println("<p>" + run.gps + "</p>");
+      out.println("<p>" + run.data + "</p>");
     }
     out.println("</div>");
     out.println("<form action='/' method='post'>");
@@ -75,14 +75,14 @@ public class NewRunServlet extends HttpServlet {
     int timeMin = validateInt(request.getParameter("timeMin"));
     int timeSec = validateInt(request.getParameter("timeSec"));
     double time = timeHr * 3600 + timeMin * 60 + timeSec; // time stored in seconds
-    String gps = request.getParameter("gps");
+    String data = request.getParameter("data");
 
 
     PreparedStatement insert = connection.prepareStatement("INSERT INTO RUNS(Date, Distance, Time, GPS) VALUES(?, ?, ?, ?)");
     insert.setString(1, date);
     insert.setDouble(2, distance);
     insert.setDouble(3, time);
-    insert.setString(4, gps);
+    insert.setString(4, data);
 
     insert.executeUpdate();
   }
