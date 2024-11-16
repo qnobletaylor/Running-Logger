@@ -12,8 +12,8 @@
     <servlet-class>edu.bhcc.HomeServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>newRun</servlet-name>
-    <servlet-class>edu.bhcc.NewRunServlet</servlet-class>
+    <servlet-name>Run</servlet-name>
+    <servlet-class>edu.bhcc.RunServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -21,8 +21,8 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>newRun</servlet-name>
-    <url-pattern>/newRun</url-pattern>
+    <servlet-name>Run</servlet-name>
+    <url-pattern>/Run</url-pattern>
   </servlet-mapping>
 
 
