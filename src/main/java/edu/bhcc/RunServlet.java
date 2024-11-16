@@ -82,14 +82,15 @@ public class RunServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html lang='en'>");
     out.println("<body>");
-    out.println("<div style=height:500px;width:450px;overflow:auto>");
+    out.println("<div style=height:600px;width:550px;overflow:auto>");
 
     for (Run run : runs) { // insert each run into the page
       out.println("<h3>" + run.date + "</h3>");
-      out.println("<p>Distance : " + String.format("%.2f", run.distance) + " miles</p>");
-      out.println("<p>Duration : " + String.format("%d : %d : %d", ((int) run.time / 3600),
+      out.println("<p>Distance - " + String.format("%.2f", run.distance) + " miles</p>");
+      out.println("<p>Duration - " + String.format("%d : %d : %d", ((int) run.time / 3600),
           ((int) run.time % 3600) / 60, ((int) run.time % 60)) + "</p>");
-      out.println("<p>Speed    : " + String.format("%.2f", run.speed) + " min/mile</p>");
+      out.println("<p>Speed    - " + String.format("%d : %d", ((int) run.speed),
+          (int)((run.time/run.distance)-((int) run.speed)*60)) + " min/mile</p>");
 
       if (run.stravaID != null) { // Checks if there is a strava id present
         out.println("<div class='strava-embed-placeholder' data-embed-type='activity' data-embed-id='"+run.stravaID+"' " +
