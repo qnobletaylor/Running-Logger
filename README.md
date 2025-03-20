@@ -1,5 +1,7 @@
 # Running Activity Log App
 
+![Demo](https://i.imgur.com/bLXuh5y.gif)
+
 This web app simply lets a user input information about a run they wish to track. 
 
 This is meant as more of an exercise into beginner web app development rather than actually offering
