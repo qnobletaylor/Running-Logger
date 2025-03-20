@@ -1,6 +1,6 @@
 # Running Activity Log App
 
-![Demo](https://i.imgur.com/2VcAzvo.gif)
+![Demo](https://i.imgur.com/ma5zDCs.png)
 
 This web app simply lets a user input information about a run they wish to track. 
 
